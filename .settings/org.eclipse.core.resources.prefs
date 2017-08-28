@@ -1,0 +1,14 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/zhiyou100/zy/model/Page.java=UTF-8
+encoding//src/main/java/com/zhiyou100/zy/web/utils/CustomException.java=UTF-8
+encoding//src/main/webapp/WEB-INF/view/course/addcourse.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/view/course/courseedit.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/view/course/courselist.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/view/speaker/addspeaker.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/view/speaker/speakeredit.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/view/speaker/speakerlist.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/view/video/addvideo.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/view/video/videoedit.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/view/video/videolist.jsp=UTF-8
+encoding//src/test/java=UTF-8
+encoding/<project>=UTF-8
