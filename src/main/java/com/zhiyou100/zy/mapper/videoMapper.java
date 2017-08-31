@@ -34,4 +34,14 @@ public interface videoMapper {
 	void deleteVideos(@Param("ids")int[] ids);
 
 	List<Integer> findAvgPlayTimes();
+
+	List<video> findSpeakerAndCourse(@Param("id")Integer videoId);
+
+	int findVideoList(@Param("id")int videoId);
+
+	int findSubjectId(@Param("id")int id);
+
+	List<video> findVideoBySubjectId(@Param("id")int subjectid);
+
+	
 }

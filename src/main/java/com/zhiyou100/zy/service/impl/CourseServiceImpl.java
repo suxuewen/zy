@@ -2,6 +2,8 @@ package com.zhiyou100.zy.service.impl;
 
 import java.util.List;
 
+import javax.security.auth.Subject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,6 +69,18 @@ subjectMapper sm;
 	public List<course> findCourse() {
 		
 		return cm.selectByExample(null);
+	}
+
+	@Override
+	public subject findSubjectById(int subjectId) {
+		 
+		return sm.selectByPrimaryKey(subjectId);
+	}
+
+	@Override
+	public List<course> findCourseAndVideo(int subjectId) {
+		
+		return cm.findCourseAndVideo(subjectId);
 	}
 
 	

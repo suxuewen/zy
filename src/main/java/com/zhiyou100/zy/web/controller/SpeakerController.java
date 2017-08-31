@@ -17,6 +17,7 @@ import com.zhiyou100.zy.model.speaker;
 import com.zhiyou100.zy.service.SpeakerService;
 
 @Controller
+@RequestMapping("/admin")   
 public class SpeakerController {
 
 	  @Autowired

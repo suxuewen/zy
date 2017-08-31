@@ -1,32 +1,33 @@
 package com.zhiyou100.zy.web.controller;
 
-import java.util.Arrays;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zhiyou100.zy.model.Page;
 import com.zhiyou100.zy.model.course;
 import com.zhiyou100.zy.model.speaker;
+import com.zhiyou100.zy.model.subject;
 import com.zhiyou100.zy.model.video;
 import com.zhiyou100.zy.service.VideoService;
 
 @Controller
+@RequestMapping("/admin")
 public class VideoController {
     @Autowired
 	VideoService vs;
+  
 	@RequestMapping("/video/videolist.action")
 	public ModelAndView findAllVideo(@RequestParam(defaultValue="")String videoSpeaker,@RequestParam(defaultValue="")String videoCourse,@RequestParam(defaultValue="") String videoSearchField,@RequestParam(defaultValue="1") Integer page){
 		
 		Page<video> page1 = vs.findAllVideo(videoSearchField,videoSpeaker,videoCourse,page);
-		
+	
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("page",page1);		
 	     List<course> list = vs.findAllCourse();
@@ -95,28 +96,41 @@ public class VideoController {
 	
 	
 	@RequestMapping("/video/videodelete.action")
+	@ResponseBody
 	 public String videodelete(int id){
-		
+		System.out.println(id);
 		vs.deletevideo(id);
 		
 		
-		 return "forward:/video/videolist.action";
+		 return "success";
 	 }
-	
-	
-	
 	
 	@RequestMapping("/video/deletevideos.action")
-	 public String deletevideos(int[] ids){
-		
-		
-		System.out.println(Arrays.toString(ids));
+	 public String deletevideos(Integer[] ids){
+	
 		vs.deletevideos(ids);
-		
-		
-		 return "redirect:/video/videolist.action";
+		return "redirect:/video/videolist.action";
 	 }
 	
+	@RequestMapping("/front/video/index.action")
+	public String videos( int videoId,int subjectId,Model md){
+	md.addAttribute("videoId",videoId);	
+	md.addAttribute("subjectId",subjectId);
+	subject sub=vs.findSubjectName(subjectId);
+	md.addAttribute("subject", sub);
+		return "/front/video/index";
+	 }
+	
+	@RequestMapping("/front/video/videoData.action")
+	public String content(int videoId,Model md){
+		List<video> li=vs.findSpeakerAndCourse(videoId);
+		List<video> li1= vs.findVideoList(videoId);
+		
+		md.addAttribute("videoList", li1);
+		md.addAttribute("video", li.get(0));
+		return "/front/video/content";
+		
+	}
 	
 	
 	

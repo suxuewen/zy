@@ -13,8 +13,23 @@
     <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="video_play_times" property="videoPlayTimes" jdbcType="INTEGER" />
-    <result column="speakerName" property="speakerName" jdbcType="VARCHAR"/>
-    <result column="courseName" property="courseName" jdbcType="VARCHAR"/>
+   <!--  <result column="speakerName" property="speakerName" jdbcType="VARCHAR"/>
+    <result column="courseName" property="courseName" jdbcType="VARCHAR"/> -->
+    <association property="spk" javaType="com.zhiyou100.zy.model.speaker">
+    <result column="speaker_name" property="speakerName"/>
+    <result column="speaker_head_url" property="speakerHeadUrl" />
+       <result column="speaker_descr" property="speakerDescr"/>  
+    </association>
+    <association property="cs" javaType="com.zhiyou100.zy.model.course">  
+     <result column="course_name" property="courseName"/>
+     <result column="course_descr" property="courseDescr"/>
+       
+               
+    </association>
+    
+    
+    
+    
   </resultMap> 
   <sql id="Example_Where_Clause" >
     <where >
@@ -314,7 +329,7 @@
 
   
    <select id="findAllVideo"  resultMap="BaseResultMap">
-    select v.*,speaker_name speakerName,course_name courseName from video v
+    select v.*,speaker_name ,course_name  from video v
     left join speaker s
     on v.speaker_id=s.id 
     left join course c
@@ -324,10 +339,10 @@
  and video_title like '%' #{videoSearchField} '%' 
   </if>
   <if test="videoSpeaker!= '' ">
-  
  and s.speaker_name =#{videoSpeaker} 
-  
   </if>
+  
+  
   
    <if test="videoCourse != '' ">
   
@@ -371,6 +386,11 @@
   </if>
    </where>
   
+  
+  
+  
+  
+  
   </select>
   
   <delete id="deleteVideos" >  
@@ -381,6 +401,7 @@
   </foreach>
   </where>
   </delete>
+  
   <select id="findAvgPlayTimes" resultType="int" >
   
   select AVG(video_play_times) FROM video v,course c WHERE v.course_id=c.id GROUP BY c.course_name order BY c.id ASC
@@ -388,9 +409,32 @@
   
   </select>
   
+  <select id="findSpeakerAndCourse" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  select v.*,s.*,c.course_descr from video v,speaker s,course c where v.id = ${id}
+   and v.speaker_id=s.id and v.course_id=c.id
+  </select>
   
   
   
+  <select id="findVideoList" resultType="int">
+  
+  select c.id from course c,video v where v.id=${id} and v.course_id=c.id
+  
+  </select>
+  
+  
+  <select id="findSubjectId" resultType="int">
+  
+  select c.subject_id from course c,subject s where c.id=${id} and c.subject_id=s.id
+  
+  </select>
+  
+ 
+   <select id="findVideoBySubjectId" resultMap="BaseResultMap">
+   
+   select v.*, sp.speaker_name from video v,subject s,course c,speaker sp where  c.subject_id=s.id and v.course_id=c.id and s.id=${id}
+   and v.speaker_id=sp.id
+   </select>
   
   
 </mapper>

@@ -2,6 +2,9 @@ package com.zhiyou100.zy.web.controller;
 
 import java.util.List;
 
+import javax.security.auth.Subject;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +18,7 @@ import com.zhiyou100.zy.model.subject;
 import com.zhiyou100.zy.service.CourseService;
 
 @Controller
+@RequestMapping("/admin")
 public class CourseController {
 @Autowired
 CourseService cs;
@@ -81,7 +85,16 @@ CourseService cs;
 		return "forward:/course/courselist.action";
 		
 	}
+	@RequestMapping("/front/course/index.action")
+	public String course(Model md,int subjectId){
+	md.addAttribute("subjectId",subjectId);
+	      subject  sub=cs.findSubjectById(subjectId);
+	List<course> course = cs.findCourseAndVideo(subjectId);
 	
-	
+	md.addAttribute("subject",sub);
+	md.addAttribute("courses",course);
+		return "/front/course/index";
+	}
+		
 	
 }

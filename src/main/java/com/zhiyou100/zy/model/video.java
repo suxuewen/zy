@@ -24,9 +24,6 @@ public class video {
     private Date updateTime;
 
     private Integer videoPlayTimes;
-    
-    private String speakerName;
-    private String courseName;
     private speaker spk;
     private course cs;
     private int count;
@@ -55,21 +52,7 @@ public class video {
 		this.cs = cs;
 	}
 
-	public String getSpeakerName() {
-		return speakerName;
-	}
-
-	public void setSpeakerName(String speakerName) {
-		this.speakerName = speakerName;
-	}
-
-	public String getCourseName() {
-		return courseName;
-	}
-
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
-	}
+	
 
 	public Integer getId() {
         return id;
@@ -164,8 +147,9 @@ public class video {
 		return "video [id=" + id + ", videoTitle=" + videoTitle + ", speakerId=" + speakerId + ", courseId=" + courseId
 				+ ", videoLength=" + videoLength + ", videoImageUrl=" + videoImageUrl + ", videoUrl=" + videoUrl
 				+ ", videoDescr=" + videoDescr + ", insertTime=" + insertTime + ", updateTime=" + updateTime
-				+ ", videoPlayTimes=" + videoPlayTimes + ", speakerName=" + speakerName + ", courseName=" + courseName
-				+ ", spk=" + spk + ", cs=" + cs + ", count=" + count + "]";
+				+ ", videoPlayTimes=" + videoPlayTimes + ", spk=" + spk + ", cs=" + cs + ", count=" + count + "]";
 	}
+
+	
     
 }

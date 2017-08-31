@@ -8,7 +8,18 @@
     <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="subject_id" property="subjectId" jdbcType="INTEGER" />
-     <result column="subjectName" property="subjectName" jdbcType="VARCHAR"/>
+     <association property="sub" javaType="com.zhiyou100.zy.model.subject">
+     <result column="subjectName" property="subjectName"/>
+     </association>
+     <collection property="vid" ofType="com.zhiyou100.zy.model.video">
+     <id column="Vid" property="id"/> 
+     <result column="video_title" property="videoTitle"/>   
+     <result column="video_image_url" property="videoImageUrl"/>
+     <result column="video_length" property="videoLength"/>
+     <result column="video_descr" property="videoDescr"/>
+     </collection> 
+     
+     
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -235,6 +246,15 @@
   limit #{page},10
   </select>
   
+  
+  
+  <select id="findCourseAndVideo" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+ select c.*,subject_name subjectName,v.*,v.id Vid from course c ,subject s,video v
+  
+  where s.id=c.subject_id and c.id=v.course_id and c.subject_id=#{v}
+  
+  
+  </select>
   
   
   

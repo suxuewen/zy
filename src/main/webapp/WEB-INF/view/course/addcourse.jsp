@@ -11,11 +11,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>编辑课程</title>
 		
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
-		<script src="../js/jquery-1.12.4.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/jquery-1.12.4.min.js"></script>
 
-		<script src="../js/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 		</head>
 	<body>
 		<div class="container">
@@ -24,9 +24,9 @@
   			 <ul class="nav navbar-nav">
         		
 	            <li style="font-size: 30px;"><a href="#">视频管理系统</a></li>
-	             <li><a href="<c:url value="/video/videolist.action"></c:url>">视频管理</a></li>
-	            <li><a href="<c:url value="/speaker/speakerlist.action"></c:url>">主讲人管理</a></li>
-	            <li><a href="<c:url value="/course/courselist.action"></c:url>">课程管理</a></li>
+	             <li><a href="<c:url value="/admin/video/videolist.action"></c:url>">视频管理</a></li>
+	            <li><a href="<c:url value="/admin/speaker/speakerlist.action"></c:url>">主讲人管理</a></li>
+	            <li><a href="<c:url value="/admin/course/courselist.action"></c:url>">课程管理</a></li>
 	            <li><a href="#">统计分析</a></li>
 	            <p class="navbar-text navbar-right" style="margin-left: 450px;">${admin.loginName}<a href="#" class="glyphicon glyphicon-share">退出</a></p>
 	            
@@ -43,7 +43,7 @@
 </div>
 <div class="container">
 	
-	<form class="form-horizontal" action="${pageContext.request.contextPath}/course/addcourse1.action">
+	<form class="form-horizontal" action="${pageContext.request.contextPath}/admin/course/addcourse1.action">
   <div class="form-group">
   	 <label for="inputEmail3" class="col-sm-2 control-label">所属学科</label>
     <div class="col-sm-10">

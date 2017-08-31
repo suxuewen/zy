@@ -30,5 +30,7 @@ public interface courseMapper {
 
 	List<course> findAllCourse(@Param("page")int p2);
 
+	List<course> findCourseAndVideo(@Param("v")int subjectId);
+
 	
 }

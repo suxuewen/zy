@@ -11,11 +11,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>课程列表</title>
 		
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
-		<script src="../js/jquery-1.12.4.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/jquery-1.12.4.min.js"></script>
 
-		<script src="../js/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 		</head>
 	<body>
 		<div class="container">
@@ -24,9 +24,9 @@
   			 <ul class="nav navbar-nav">
         		
 	            <li style="font-size: 30px;"><a href="#">视频管理系统</a></li>
-	            <li><a href="<c:url value="/video/videolist.action"></c:url>">视频管理</a></li>
-	            <li><a href="<c:url value="/speaker/speakerlist.action"></c:url>">主讲人管理</a></li>
-	            <li><a href="<c:url value="/course/courselist.action"></c:url>">课程管理</a></li>
+	            <li><a href="<c:url value="/admin/video/videolist.action"></c:url>">视频管理</a></li>
+	            <li><a href="<c:url value="/admin/speaker/speakerlist.action"></c:url>">主讲人管理</a></li>
+	            <li><a href="<c:url value="/admin/course/courselist.action"></c:url>">课程管理</a></li>
 	            <li><a href="#">统计分析</a></li>
 	            <p class="navbar-text navbar-right" style="margin-left: 450px;">${admin.loginName}<a href="#" class="glyphicon glyphicon-share">退出</a></p>
 	            
@@ -43,7 +43,7 @@
 
  <div  class="row">
         	<div  class="col-md-4 "  >
-        	<a href="<c:url value="/course/addcourse.action"></c:url>"><button type="button" class="btn btn-primary btn-lg active" >添加课程</button></a>
+        	<a href="<c:url value="/admin/course/addcourse.action"></c:url>"><button type="button" class="btn btn-primary btn-lg active" >添加课程</button></a>
         
         	</div>
 		 
@@ -65,17 +65,17 @@
         	
           <th scope="row">${status.count}</th>
           <td>${li.courseName}</td>
-          <td>${li.subjectName}</td> 
+          <td>${li.sub.subjectName}</td> 
           <td>${li.courseDescr}</td>
-          <td><a class="glyphicon glyphicon-edit"  href="<c:url value="/course/courseedit.action?id=${li.id}"></c:url>"></a></td>
-          <td><a class="glyphicon glyphicon-trash" href="<c:url value="/course/coursedelete.action?id=${li.id}"></c:url>"></a> </td>
+          <td><a class="glyphicon glyphicon-edit"  href="<c:url value="/admin/course/courseedit.action?id=${li.id}"></c:url>"></a></td>
+          <td><a class="glyphicon glyphicon-trash" href="<c:url value="/admin/course/coursedelete.action?id=${li.id}"></c:url>"></a> </td>
         </tr>
       </c:forEach>
         
       </tbody>
     </table>
 	</div>
-	<sxw:page url="${pageContext.request.contextPath}/course/course.action"/>
+	<sxw:page url="${pageContext.request.contextPath}/admin/course/course.action"/>
 	</div>
 			
 	</body>

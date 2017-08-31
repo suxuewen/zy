@@ -2,13 +2,18 @@ package com.zhiyou100.zy.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.zhiyou100.zy.web.utils.Md5utils;
+
 public class User {
     private Integer id;
 
     private String nickName;
 
     private Integer sex;
-
+    
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date birthday;
 
     private String email;
@@ -122,4 +127,13 @@ public class User {
     public void setCaptcha(String captcha) {
         this.captcha = captcha == null ? null : captcha.trim();
     }
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", nickName=" + nickName + ", sex=" + sex + ", birthday=" + birthday + ", email="
+				+ email + ", province=" + province + ", city=" + city + ", headUrl=" + headUrl + ", password="
+				+ password + ", insertTime=" + insertTime + ", updateTime=" + updateTime + ", captcha=" + captcha + "]";
+	}
+
+	
 }

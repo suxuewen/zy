@@ -12,26 +12,14 @@
 <meta http-equiv="Content-Type" content="text/javascript; charset=gb2312" />
 <title>视频列表</title>
 
+<link href="${pageContext.request.contextPath}/css/jquery-confirm.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-
 <script src="${pageContext.request.contextPath}/js/jquery-1.12.4.min.js"></script>
-
+<script src="${pageContext.request.contextPath}/js/jquery-confirm.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-<script src="/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-modal.js"></script>
 
 <script>
       
-function deletevideos() {
-	
-	      
-
-	document.getElementsByTagName("form")[1].submit();
-	
-}
-
-
-
-
 
 
       var a=0; 
@@ -41,88 +29,90 @@ function cishu(n){
 	 }else{
 		a--;
 	}
-	
-/* 	document.getElementById('dianjicishu').innerHTML = a; */
-	$("#dianjicishu").html(a);
-	
+	$("#dianjicishu").text(a);	
+	if(a==$("input[name=ids]").length){
+		$("#allchoose").prop("checked",true);
+	}else{
+		$("#allchoose").prop("checked",false);
+	}
 }
 
-/*  function allclick(allchoose,ids){
-    	
-    	
-	 var sonname=document.getElementsByName("ids"); 
-	var all=document.getElementById("allchoose");
-	var tempstate=all.checked;
+function deletevideos() {
 	
-	for (i=0;i<sonname.length;i++){
-		
-		if(sonname[i].checked!=tempstate){
-			sonname[i].click();
-		}
-		
+	if(a==0){
+   $.alert({
+	   title: '警告',
+	    content: '没选中,删什么删',
+   })
+		return;
+	}
+	$.confirm({
+	    title: '提示!',
+	    content: '是否全部删除!',
+	    buttons: {
+	        confirm: {
+	            text:"非常肯定",
+	            action: function(){
+	            $("#deleteVideos").submit();
+	    
+	            }
+	        },
+	                  取消: function () {   
+	        }       
+	    }
+	});		
+}
+
+	function allclick(ele){
+	$("input[name=ids]").prop("checked",ele.checked);
+	if(ele.checked){
+		a=$("input[name=ids]").length;
+	}else{
+		a=0;
+	}
+	$("#dianjicishu").text(a);	
+}
+
+	function confirm(id){
+		$.confirm({
+		    title: '提示!',
+		    content: '是否确认删除!',
+		    buttons: {
+		        confirm: {
+		            text:"非常肯定",
+		            action: function(){
+		            	$.ajax({	
+		            		url:"${pageContext.request.contextPath}/video/videodelete.action",
+		            		datatype:"text",	
+		            		type:"post",
+		            		data:{"id":id},
+		            		success:function(msg){
+		            			if(msg=="success"){
+		            				location.reload();
+		            			}
+		            			
+		            		}
+		            	});
+		            }
+		        },
+		                  取消: function () {   
+		        }       
+		    }
+		});		
 	}
 	
-}  */
-
- $(function(){
 	
-
-	$("#allchoose").click(function(){
-		var tempstate=this.checked;
 	
-		var a=$("input[name=ids]");
-		
-	a.each(function (index,domElement){	
-		    
-          domElement.checked=tempstate;	    	  
-		});
-	       var count=a.size();
-		if(tempstate==true){	
-		
-			$("#dianjicishu").html(count);
-			
-		}else{
-			$("#dianjicishu").html(0);
-		}
-		
-	});	
 	
-		
-	})	 
-	
-
-
-
-
 </script>
 
 </head>
 <body>
 
 
-
-	<div class="container">
-		<nav class="navbar navbar-inverse">
-
-			<ul class="nav navbar-nav">
-
-				<li style="font-size: 30px;"><a href="#">视频管理系统</a></li>
-				<li><a href="<c:url value="/video/videolist.action"></c:url>">视频管理</a></li>
-
-				<li><a
-					href="<c:url value="/speaker/speakerlist.action"></c:url>">主讲人管理</a></li>
-				<li><a href="<c:url value="/course/courselist.action"></c:url>">课程管理</a></li>
-				<li><a href="<c:url value="/charts/chartslist.action"></c:url>">统计分析</a></li>
-				<p class="navbar-text navbar-right" style="margin-left: 450px;">
-					${admin.loginName}<a href="#" class="glyphicon glyphicon-share">退出</a>
-				</p>
-
-			</ul>
-
-
-
-		</nav>
-	</div>
+	<jsp:include page="/WEB-INF/view/header.jsp">
+	<jsp:param value="video" name="fromJsp"/>
+	</jsp:include>
 
 	<div class="container">
 		<div class="jumbotron">
@@ -131,13 +121,13 @@ function cishu(n){
 
 		<div class="row">
 			<div class="col-md-4">
-				<a href="<c:url value="/video/addvideo.action"></c:url>"><button type="button" class="btn btn-primary btn-lg active">添加视频</button></a>
+				<a href="<c:url value="/admin/video/addvideo.action"></c:url>"><button type="button" class="btn btn-primary btn-lg active">添加视频</button></a>
 	
 	
-	<button type="button" class="btn btn-primary btn-lg active" onclick="deletevideos()">批量删除(<span id="dianjicishu">0</span>)</button>
+	<button type="button" class="btn btn-primary btn-lg active"  onclick="deletevideos()">批量删除(<span id="dianjicishu">0</span>)</button>
 			</div>
 			<form class="form-inline"
-				action="<c:url value="/video/videolist.action"></c:url>">
+				action="<c:url value="/admin/video/videolist.action"></c:url>">
 				<div class="form-group col-md-offset-1">
 					<input type="text" class="form-control" id="exampleInputName2"
 						placeholder="视频标题" name="videoSearchField"
@@ -170,10 +160,10 @@ function cishu(n){
 			</form>
 		</div>
 
-		<form class="form-inline" action="<c:url value="/video/deletevideos.action"></c:url>">
+		<form class="form-inline" id="deleteVideos" action="<c:url value="/admin/video/deletevideos.action"></c:url>">
 			<table class="table table-hover">
 				<tr>
-					<th><input type="checkbox" id="allchoose" onclick="allclick('allchoose','ids')" ></th>
+					<th><input type="checkbox" id="allchoose" onclick="allclick(this)" ></th>
 					<th>序号</th>
 					<th>名称</th>
 					<th class="col-md-6">介绍</th>
@@ -186,31 +176,35 @@ function cishu(n){
 				</tr>
 
 				<tbody>
+				<c:if test="${not empty page.rows}">
 					<c:forEach items="${page.rows}" var="li" varStatus="status">
 						<tr>
 							<td><input type="checkbox" value="${li.id}" name="ids" id="ids" onclick="cishu(this)" ></td>
 							<th scope="row">${ status.count}</th>
 							<td>${li.videoTitle}</td>
 							<td>${li.videoDescr}</td>
-							<td>${li.speakerName }</td>
-							<td>${li.courseName}</td>
+							<td>${li.spk.speakerName }</td>
+							<td>${li.cs.courseName}</td>
 							<td>${li.videoLength}</td>
 							<td>${li.videoPlayTimes }</td>
 							<td><a class="glyphicon glyphicon-edit"
-								href="<c:url value="/video/videoedit.action?id=${li.id}"></c:url>"></a></td>
-							<td><a class="glyphicon glyphicon-trash"   href="<c:url value="/video/videodelete.action?id=${li.id}"></c:url>"
-								></a>
+								href="<c:url value="/admin/video/videoedit.action?id=${li.id}"></c:url>"></a></td>
+							<td><a class="glyphicon glyphicon-trash"  onclick="confirm(${li.id})" >
+								</a>
 								
 								
 							</td>
 						</tr>
 					</c:forEach>
-
+					</c:if>
+               <c:if test="${empty page.rows}">
+                  <tr><td>当前查询结果为空!</td></tr>
+               </c:if>
 				</tbody>
 			</table>
 		</form>
 		<sxw:page
-			url="${pageContext.request.contextPath}/video/videolist.action" />
+			url="${pageContext.request.contextPath}/admin/video/videolist.action" />
 	</div>
 	 
 </body>

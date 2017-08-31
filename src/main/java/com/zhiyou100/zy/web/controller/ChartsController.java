@@ -12,7 +12,8 @@ import com.zhiyou100.zy.service.CourseService;
 import com.zhiyou100.zy.service.VideoService;
 
 @Controller
-public class ChartsMapper {
+@RequestMapping("/admin")
+public class ChartsController {
 	     @Autowired
          CourseService cs;
 	     @Autowired

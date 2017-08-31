@@ -1,6 +1,7 @@
 package com.zhiyou100.zy.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class course {
     private Integer id;
@@ -14,24 +15,30 @@ public class course {
     private Date updateTime;
 
     private Integer subjectId;
+    private List<video> vid;
+    private subject sub;
 
-    private String subjectName;
-    
-    
-    @Override
-	public String toString() {
-		return "course [id=" + id + ", courseName=" + courseName + ", courseDescr=" + courseDescr + ", insertTime="
-				+ insertTime + ", updateTime=" + updateTime + ", subjectId=" + subjectId + ", subjectName="
-				+ subjectName + "]";
+	
+
+	public List<video> getVid() {
+		return vid;
 	}
 
-	public String getSubjectName() {
-		return subjectName;
+	public void setVid(List<video> vid) {
+		this.vid = vid;
 	}
 
-	public void setSubjectName(String subjectName) {
-		this.subjectName = subjectName;
+	public subject getSub() {
+		return sub;
 	}
+
+	public void setSub(subject sub) {
+		this.sub = sub;
+	}
+
+	
+
+	
 
 	public Integer getId() {
         return id;
@@ -80,4 +87,15 @@ public class course {
     public void setSubjectId(Integer subjectId) {
         this.subjectId = subjectId;
     }
+
+	@Override
+	public String toString() {
+		return "course [id=" + id + ", courseName=" + courseName + ", courseDescr=" + courseDescr + ", insertTime="
+				+ insertTime + ", updateTime=" + updateTime + ", subjectId=" + subjectId + ", vid=" + vid + ", sub="
+				+ sub + "]";
+	}
+
+	
+    
+    
 }

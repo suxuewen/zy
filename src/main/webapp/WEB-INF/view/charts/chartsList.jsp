@@ -12,11 +12,11 @@
 	content="text/javascript; charset=gb2312" />
 <title>视频列表</title>
 
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
-<script src="../js/jquery-1.12.4.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-1.12.4.min.js"></script>
 
-<script src="../js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -26,9 +26,9 @@
                <li style="font-size: 30px;"><a href="#">视频管理系统</a></li>
 				<li><a href="<c:url value="/video/videolist.action"></c:url>">视频管理</a></li>
 				<li><a
-					href="<c:url value="/speaker/speakerlist.action"></c:url>">主讲人管理</a></li>
-				<li><a href="<c:url value="/course/courselist.action"></c:url>">课程管理</a></li>
-				<li><a href="<c:url value="/charts/chartslist.action"></c:url>">统计分析</a></li>
+					href="<c:url value="/admin/speaker/speakerlist.action"></c:url>">主讲人管理</a></li>
+				<li><a href="<c:url value="/admin/course/courselist.action"></c:url>">课程管理</a></li>
+				<li><a href="<c:url value="/admin/charts/chartslist.action"></c:url>">统计分析</a></li>
 				
 			</ul>
 			<p class="navbar-text navbar-right" style="margin-right: 100px;">
@@ -64,6 +64,7 @@
             ],
             function (ec) {
                 // 基于准备好的dom，初始化echarts图表
+                
                 var myChart = ec.init(document.getElementById('main')); 
                 
                 var option = {
@@ -72,7 +73,7 @@
                     },
                     legend: {
                         data:['课程平均播放次数'],
-                       /*  data:['资料来源:com.zhiyou100'] */
+                        subtext: '数据来源:zhiyou100.com'
                     },
                     xAxis : [
                         {

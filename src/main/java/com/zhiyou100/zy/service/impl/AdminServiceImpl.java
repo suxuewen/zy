@@ -20,12 +20,7 @@ public class AdminServiceImpl implements AdminService {
 	public List<Admin> findAdmin(String username, String password) {
 		
 		AdminExample ae=new AdminExample();
-		
-		byte[] bytes = password.getBytes();
-		String pwd = DigestUtils.md5DigestAsHex(bytes);
-		
-		
-		ae.createCriteria().andLoginNameEqualTo(username).andLoginPwdEqualTo(pwd);
+		ae.createCriteria().andLoginNameEqualTo(username).andLoginPwdEqualTo(password);
 		
 		List<Admin> list = adm.selectByExample(ae);
 		
