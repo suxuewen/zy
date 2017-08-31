@@ -28,7 +28,8 @@ public class CustomInterceptor implements HandlerInterceptor {
 		 String name=(String) req.getSession().getAttribute("name");
             if(name==null){
 		
-	      res.sendRedirect(req.getContextPath()+"/index.jsp");	
+	     /* res.sendRedirect(req.getContextPath()+"/WEB-INF/view/admin/login.jsp");	*/
+	      req.getRequestDispatcher("/WEB-INF/view/admin/login.jsp").forward(req, res);
 			return false;
 	
 		}else{

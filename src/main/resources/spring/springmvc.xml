@@ -71,6 +71,21 @@
 		<bean class="com.zhiyou100.zy.web.utils.CustomInterceptor"/>
 	</mvc:interceptor>
 
+ <mvc:interceptor>
+<mvc:mapping path="/front/**"/>
+
+<mvc:exclude-mapping path="/front/user/login.action"/>
+<mvc:exclude-mapping path="/front/user/rigist.action"/>
+<mvc:exclude-mapping path="/front/forgetpwd.action"/>
+<mvc:exclude-mapping path="/front/sendemail.action"/>
+<mvc:exclude-mapping path="/front/forgetpwd1.action"/>
+<mvc:exclude-mapping path="/front/resetpwd.action"/>
+<mvc:exclude-mapping path="/front/course/**"/>
+<mvc:exclude-mapping path="/front/video/**"/>
+
+<bean class="com.zhiyou100.zy.web.utils.FrontInterceptor"></bean>
+</mvc:interceptor>
+
 
 </mvc:interceptors>
 

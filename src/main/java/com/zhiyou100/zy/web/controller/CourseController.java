@@ -18,11 +18,11 @@ import com.zhiyou100.zy.model.subject;
 import com.zhiyou100.zy.service.CourseService;
 
 @Controller
-@RequestMapping("/admin")
+
 public class CourseController {
 @Autowired
 CourseService cs;
-	@RequestMapping("/course/courselist.action")
+	@RequestMapping("/admin/course/courselist.action")
 	public ModelAndView findAllCourse(@RequestParam(defaultValue="1") Integer page ){
 		
 		ModelAndView mav=new ModelAndView();
@@ -36,14 +36,14 @@ CourseService cs;
 	
 		return mav;
 	}
-	@RequestMapping("/course/addcourse.action")
+	@RequestMapping("/admin/course/addcourse.action")
 	public String addcourse(Model md){
 		List<subject> li=cs.findAddsubject();
 		md.addAttribute("subjectlist",li);
 		return "/course/addcourse";
 		
 	}
-	@RequestMapping("/course/addcourse1.action")
+	@RequestMapping("/admin/course/addcourse1.action")
 	public String addcourse1(course c){
 	
 	    cs.addCourse(c);
@@ -54,7 +54,7 @@ CourseService cs;
 	
 	
 	
-	@RequestMapping("/course/courseedit.action")
+	@RequestMapping("/admin/course/courseedit.action")
 	public String editcourse(int id,Model md){
 	
 	   course c=cs.findCourseById(id);
@@ -66,7 +66,7 @@ CourseService cs;
 	}
 	
 
-	@RequestMapping("/course/courseedit1.action")
+	@RequestMapping("/admin/course/courseedit1.action")
 	public String editcourse1(course c){
 	      cs.updatecourse(c);
 		
@@ -76,7 +76,7 @@ CourseService cs;
 		
 	}
 	
-	@RequestMapping("/course/coursedelete.action")
+	@RequestMapping("/admin/course/coursedelete.action")
 	public String deletecourse(int  id){
 	     
 		cs.deleteCourse(id);

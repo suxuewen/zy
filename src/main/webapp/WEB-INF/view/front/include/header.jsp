@@ -9,7 +9,7 @@
 
 		<c:if test="${not empty user}">
 			<div id="userBlock" style="float:right">
-				<a href="front/user/logout.do">退出</a>
+				<a href="/front/user/logout.action">退出</a>
 				<a href="/zy/front/user/index.action" id="account">${user.email }</a>
 			</div>
 		</c:if>

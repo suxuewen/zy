@@ -31,8 +31,8 @@
 				<li <c:if test='${param.fromJsp=="course"}'> class="active"</c:if>><a href="<c:url value="/admin/course/courselist.action"></c:url>">课程管理</a></li>
 				<li <c:if test='${param.fromJsp=="charts"}'> class="active"</c:if>><a href="<c:url value="/admin/charts/chartslist.action"></c:url>">统计分析</a></li>
 			</ul>
-                  <p class="navbar-text navbar-right" style="margin-left: 450px;" >
-					${admin.loginName}<a href="#" class="glyphicon glyphicon-share">退出</a>
+                  <p class="navbar-text navbar-right" style="margin-right:50px;" >
+					${admin.loginName}<a href="${pageContext.request.contextPath}/index.jsp" class="glyphicon glyphicon-share">退出</a>
 				</p>
 		</nav>
 	</div>

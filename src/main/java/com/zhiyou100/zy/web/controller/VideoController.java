@@ -18,12 +18,12 @@ import com.zhiyou100.zy.model.video;
 import com.zhiyou100.zy.service.VideoService;
 
 @Controller
-@RequestMapping("/admin")
+
 public class VideoController {
     @Autowired
 	VideoService vs;
   
-	@RequestMapping("/video/videolist.action")
+	@RequestMapping("/admin/video/videolist.action")
 	public ModelAndView findAllVideo(@RequestParam(defaultValue="")String videoSpeaker,@RequestParam(defaultValue="")String videoCourse,@RequestParam(defaultValue="") String videoSearchField,@RequestParam(defaultValue="1") Integer page){
 		
 		Page<video> page1 = vs.findAllVideo(videoSearchField,videoSpeaker,videoCourse,page);
@@ -45,7 +45,7 @@ public class VideoController {
 	
 	
 	
-	@RequestMapping("/video/addvideo.action")
+	@RequestMapping("/admin/video/addvideo.action")
 	           public ModelAndView addVideo(){
 		ModelAndView mav=new ModelAndView();
 		 List<course> list = vs.findAllCourse();
@@ -58,7 +58,7 @@ public class VideoController {
 	           }
 	
 	
-	@RequestMapping("/video/addvideo1.action")
+	@RequestMapping("/admin/video/addvideo1.action")
 	 public String addvideo1(video v){
 		 
 		
@@ -71,7 +71,7 @@ public class VideoController {
 	
 	
 	
-	@RequestMapping("/video/videoedit.action")
+	@RequestMapping("/admin/video/videoedit.action")
 	 public String videoedit(int id,Model md){
 		video v=vs.findVideoById(id); 
 		System.out.println(v);
@@ -83,7 +83,7 @@ public class VideoController {
 		 return "/video/videoedit";
 	 }
 	
-	@RequestMapping("/video/videoedit1.action")
+	@RequestMapping("/admin/video/videoedit1.action")
 	 public String videoedit1(video v){
 		System.out.println(v);
 		vs.updateVideo(v);
@@ -95,7 +95,7 @@ public class VideoController {
 	
 	
 	
-	@RequestMapping("/video/videodelete.action")
+	@RequestMapping("/admin/video/videodelete.action")
 	@ResponseBody
 	 public String videodelete(int id){
 		System.out.println(id);
@@ -105,7 +105,7 @@ public class VideoController {
 		 return "success";
 	 }
 	
-	@RequestMapping("/video/deletevideos.action")
+	@RequestMapping("/admin/video/deletevideos.action")
 	 public String deletevideos(Integer[] ids){
 	
 		vs.deletevideos(ids);

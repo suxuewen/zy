@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.zhiyou100.zy.model.User;
+
 public class FrontInterceptor implements HandlerInterceptor {
 
 	@Override
@@ -23,10 +25,17 @@ public class FrontInterceptor implements HandlerInterceptor {
 	}
 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler)
 			throws Exception {
-		
-		return true;
+		      User u=(User) req.getSession().getAttribute("user");
+	
+		if(u==null){
+			res.sendRedirect(req.getContextPath()+"/index.jsp");
+			return false;
+		}{
+			return true;
+		}
+	
 	}
 
 }

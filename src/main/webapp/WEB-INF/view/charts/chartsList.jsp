@@ -20,22 +20,10 @@
 
 </head>
 <body>
-	<div class="container">
-		<nav class="navbar navbar-inverse">
-			<ul class="nav navbar-nav">
-               <li style="font-size: 30px;"><a href="#">视频管理系统</a></li>
-				<li><a href="<c:url value="/video/videolist.action"></c:url>">视频管理</a></li>
-				<li><a
-					href="<c:url value="/admin/speaker/speakerlist.action"></c:url>">主讲人管理</a></li>
-				<li><a href="<c:url value="/admin/course/courselist.action"></c:url>">课程管理</a></li>
-				<li><a href="<c:url value="/admin/charts/chartslist.action"></c:url>">统计分析</a></li>
-				
-			</ul>
-			<p class="navbar-text navbar-right" style="margin-right: 100px;">
-					${admin.loginName}<a href="#" class="glyphicon glyphicon-share">退出</a>
-				</p>
-		</nav>		
-	</div>	
+	<jsp:include page="/WEB-INF/view/header.jsp">
+	<jsp:param value="charts" name="fromJsp"/>
+	</jsp:include>
+	
 		<div class="container">
 		<div class="jumbotron">
 			<h1>统计-统计分析</h1>
