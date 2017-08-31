@@ -22,13 +22,21 @@ public class video {
     private Date insertTime;
 
     private Date updateTime;
-
+      private String videoLengthStr;
     private Integer videoPlayTimes;
     private speaker spk;
     private course cs;
     private int count;
     
-    public int getCount() {
+    public String getVideoLengthStr() {
+		return videoLengthStr;
+	}
+
+	public void setVideoLengthStr(String videoLengthStr) {
+		this.videoLengthStr = videoLengthStr;
+	}
+
+	public int getCount() {
 		return count;
 	}
 
@@ -147,7 +155,8 @@ public class video {
 		return "video [id=" + id + ", videoTitle=" + videoTitle + ", speakerId=" + speakerId + ", courseId=" + courseId
 				+ ", videoLength=" + videoLength + ", videoImageUrl=" + videoImageUrl + ", videoUrl=" + videoUrl
 				+ ", videoDescr=" + videoDescr + ", insertTime=" + insertTime + ", updateTime=" + updateTime
-				+ ", videoPlayTimes=" + videoPlayTimes + ", spk=" + spk + ", cs=" + cs + ", count=" + count + "]";
+				+ ", videoLengthStr=" + videoLengthStr + ", videoPlayTimes=" + videoPlayTimes + ", spk=" + spk + ", cs="
+				+ cs + ", count=" + count + "]";
 	}
 
 	

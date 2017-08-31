@@ -2,8 +2,6 @@ package com.zhiyou100.zy.web.controller;
 
 import java.util.List;
 
-import javax.security.auth.Subject;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -90,7 +88,7 @@ CourseService cs;
 	md.addAttribute("subjectId",subjectId);
 	      subject  sub=cs.findSubjectById(subjectId);
 	List<course> course = cs.findCourseAndVideo(subjectId);
-	
+	System.out.println(course);
 	md.addAttribute("subject",sub);
 	md.addAttribute("courses",course);
 		return "/front/course/index";

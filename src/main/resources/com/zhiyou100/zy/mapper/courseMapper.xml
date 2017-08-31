@@ -17,6 +17,7 @@
      <result column="video_image_url" property="videoImageUrl"/>
      <result column="video_length" property="videoLength"/>
      <result column="video_descr" property="videoDescr"/>
+     <result column="video_play_times" property="videoPlayTimes"/>
      </collection> 
      
      

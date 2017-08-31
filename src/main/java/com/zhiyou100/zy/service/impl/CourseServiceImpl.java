@@ -12,7 +12,9 @@ import com.zhiyou100.zy.mapper.subjectMapper;
 import com.zhiyou100.zy.model.Page;
 import com.zhiyou100.zy.model.course;
 import com.zhiyou100.zy.model.subject;
+import com.zhiyou100.zy.model.video;
 import com.zhiyou100.zy.service.CourseService;
+import com.zhiyou100.zy.web.utils.VideoLength;
 @Service
 public class CourseServiceImpl implements CourseService {
          
@@ -79,12 +81,17 @@ subjectMapper sm;
 
 	@Override
 	public List<course> findCourseAndVideo(int subjectId) {
-		
-		return cm.findCourseAndVideo(subjectId);
+		List<course> list = cm.findCourseAndVideo(subjectId);
+		for(course c:list){
+			
+			List<video> list2 = c.getVid();
+			for(video v:list2){
+				Integer length = v.getVideoLength();
+		String string = VideoLength.main(length);
+	v.setVideoLengthStr(string);
 	}
-
+		}	
+		return cm.findCourseAndVideo(subjectId);
 	
-	
-	
-	
+}
 }
